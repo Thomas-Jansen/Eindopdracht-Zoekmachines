@@ -446,28 +446,3 @@ def getUserInput():
 #Get the searchterm from the user
 getUserInput()
 
-
-#_______________________________________________________________________________________________________________________
-
-Home
-
-The link to our presentation slides is https://docs.google.com/presentation/d/1xvmaEMgmG57N8MvBE_0GcJmJvyxu-0K_NzfoK7WCBsc/edit?usp=sharing.
-
-
------
-Advanced search
-
-What did we do and why
-
-In order to create a search engine we have had to clean the data set given. This had to be done to be able to work with the given data without
-having to go through them one by one. This is done in the cleanCsv.py file. Once this hase been done we upload the code using the script
-commented out underneath our main file. This puts our data into elastic cloud which we can then acces anywhere.
-
-Afterwards we will be able to get the information out and manipulate it by using the search function from the elastic cloud API. We have chosen
-to make it based from the terminal as this allows the user more freedom in choosing the search options and also let's us run it from one script.
-This is done for all types of searches.
-
-What worked and what didnt
-
-We have been able to programme a workable SE, how ever the user input is done through the terminal as opposed to done through an HTML file,
-due to some restrictions. We propose this to be a priority, might we continue with this project. The....
