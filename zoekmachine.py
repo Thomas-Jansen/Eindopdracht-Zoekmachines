@@ -38,71 +38,59 @@ def wrapStringInHTMLWindows(term, program, list_results, body):
     <title>%s output - %s</title>
     </head>
     <body>
-
     <div style="text-align:center">
     <h1>Your top 10 searchresults for: %s</h1>
     </div>
-
     <div style="background:grey">
     <p>
     %s
     </p>
     </div>
-
     <div style="background:grey">
     <p>
     %s
     </p>
     </div>
-
     <div style="background:grey">
     <p>
     %s
     </p>
     </div>
-
     <div style="background:grey">
     <p>
     %s
     </p>
     </div>
-
     <div style="background:grey">
     <p>
     %s
     </p>
     </div>
-
     <div style="background:grey">
     <p>
     %s
     </p>
     </div>
-
     <div style="background:grey">
     <p>
     %s
     </p>
     </div>
-
     <div style="background:grey">
     <p>
     %s
     </p>
     </div>
-
     <div style="background:grey">
     <p>
     %s
     </p>
     </div>
-
     <div style="background:grey">
     <p>
     %s
     </p>
     </div>
-
     </body>
     </html>"""
 
@@ -120,8 +108,9 @@ def wrapinresults(url, question):
     return(whole)
 
 #Makes wordcloud, removing stopwords, showing image
-def makeWordCloud(text):
+def makeWordCloud(term ,text):
     text = text.lower()
+    text = text.replace(term, '')
     text = text.replace('de', '')
     text = text.replace('het', '')
     text = text.replace('een', '')
@@ -175,7 +164,7 @@ def search(term, filter):
             results.append(wrapinresults(url, title))
 
     #Show all work to user
-    makeWordCloud(text)
+    makeWordCloud(term, text)
     docscount = len(results)
     if docscount < 10:
         for x in range(0, (10 - docscount)):
@@ -400,11 +389,10 @@ def searchFAC2(term, catNr):
         title = doc['_source']['Question']
 
         text = text + title
-        print()
         if int(doc['_source']['Category']) == catNr:
             results.append(wrapinresults(url, title))
 
-    makeWordCloud(text)
+    makeWordCloud(term, text)
     docscount = len(results)
     if docscount < 10:
         for x in range(0, (10 - docscount)):
@@ -439,7 +427,6 @@ def faceted():
     cat, res = searchFAC(dingen)
     catNr = getUserCat(cat)
 
-    print(catNr)
     res = searchFAC2(dingen, catNr)
 
 #Let user choose which type of search to execute, then forward to that search
@@ -450,10 +437,6 @@ def getUserInput():
     print("Input b for advanced search")
     print("Input c for faceted search")
     choise = sys.stdin.readline().split()[0]
-
-    print("Choise:" + choise)
-    print("Type:" + str(type(choise)))
-    print("Length:" + str(len(choise)))
 
     #Forward to right search method
     switcher = {
@@ -480,6 +463,3 @@ def getUserInput():
 
 #Get the searchterm from the user
 getUserInput()
-
-
-#
