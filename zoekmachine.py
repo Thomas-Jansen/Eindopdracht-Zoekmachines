@@ -40,7 +40,7 @@ def wrapStringInHTMLWindows(term, program, list_results, body):
     <body>
 
     <div style="text-align:center">
-    <h1>Your top 5 searchresults for: %s</h1>
+    <h1>Your top 10 searchresults for: %s</h1>
     </div>
 
     <div style="background:grey">
@@ -72,11 +72,42 @@ def wrapStringInHTMLWindows(term, program, list_results, body):
     %s
     </p>
     </div>
+
+    <div style="background:grey">
+    <p>
+    %s
+    </p>
+    </div>
+
+    <div style="background:grey">
+    <p>
+    %s
+    </p>
+    </div>
+
+    <div style="background:grey">
+    <p>
+    %s
+    </p>
+    </div>
+
+    <div style="background:grey">
+    <p>
+    %s
+    </p>
+    </div>
+
+    <div style="background:grey">
+    <p>
+    %s
+    </p>
+    </div>
+
     </body>
     </html>"""
 
     #Write it into html file and open once finished
-    whole = wrapper % (program, now, term, list_results[0], list_results[1], list_results[2], list_results[3], list_results[4])
+    whole = wrapper % (program, now, term, list_results[0], list_results[1], list_results[2], list_results[3], list_results[4], list_results[5], list_results[6], list_results[7], list_results[8], list_results[9])
     f.write(whole)
     f.close()
 
@@ -144,9 +175,9 @@ def search(term, filter):
             results.append(wrapinresults(url, title))
 
     #Show all work to user
-    showTimeLine(res)
     makeWordCloud(text)
     wrapStringInHTMLWindows(term, "serp", results, "body")
+    showTimeLine(res)
 
 #Ask user for query
 def simple():
@@ -371,8 +402,8 @@ def searchFAC2(term, catNr):
 
     makeWordCloud(text)
     docscount = len(results)
-    if docscount < 5:
-        for x in range(0, (5 - docscount)):
+    if docscount < 10:
+        for x in range(0, (10 - docscount)):
             results.append("")
     wrapStringInHTMLWindows(term, "serp", results, "body")
 
@@ -445,4 +476,3 @@ def getUserInput():
 
 #Get the searchterm from the user
 getUserInput()
-
