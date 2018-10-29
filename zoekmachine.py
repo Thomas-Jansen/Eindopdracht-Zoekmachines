@@ -176,6 +176,10 @@ def search(term, filter):
 
     #Show all work to user
     makeWordCloud(text)
+    docscount = len(results)
+    if docscount < 10:
+        for x in range(0, (10 - docscount)):
+            results.append("")
     wrapStringInHTMLWindows(term, "serp", results, "body")
     showTimeLine(res)
 
@@ -476,3 +480,6 @@ def getUserInput():
 
 #Get the searchterm from the user
 getUserInput()
+
+
+#
